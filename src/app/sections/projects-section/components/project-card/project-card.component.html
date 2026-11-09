@@ -1,15 +1,28 @@
-<div class="work__card">
+<article class="work__card">
   <img [src]="item.img" [alt]="item.title" class="work__img" />
 
-  <h3 class="work__title">{{ item.title }}</h3>
-  <a
-    [href]="item.link"
-    class="work__button"
-    target="_blank"
-    rel="noopener noreferrer"
-    [attr.aria-label]="'Open live demo for ' + item.title"
-  >
-    Live Demo
-    <ng-icon name="bootstrapArrowRight" class="work__button-icon" aria-hidden="true"></ng-icon>
-  </a>
-</div>
+  <div class="work__content">
+    <h3 class="work__title">{{ item.title }}</h3>
+
+    @if (item.tags?.length) {
+    <ul class="work__tags" aria-label="Technologies used">
+      @for (tag of item.tags; track tag) {
+      <li class="work__tag">{{ tag }}</li>
+      }
+    </ul>
+    }
+
+    <p class="work__description">{{ item.description }}</p>
+
+    <a
+      [href]="item.link"
+      class="work__button"
+      target="_blank"
+      rel="noopener noreferrer"
+      [attr.aria-label]="'Open live demo for ' + item.title"
+    >
+      Live Demo
+      <ng-icon name="bootstrapArrowRight" class="work__button-icon" aria-hidden="true"></ng-icon>
+    </a>
+  </div>
+</article>
