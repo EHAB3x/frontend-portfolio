@@ -11,6 +11,7 @@ import { ProjectsSectionComponent } from "./sections/projects-section/projects-s
 import { ContactSectionComponent } from "./sections/contact-section/contact-section.component";
 import { ThemeToggleComponent } from "./shared/theme-toggle/theme-toggle.component";
 import { AnalyticsService } from './core/services/analytics.service';
+import { PortfolioChatbotComponent } from './shared/portfolio-chatbot/portfolio-chatbot.component';
 
 @Component({
   selector: 'app-root',
@@ -26,7 +27,8 @@ import { AnalyticsService } from './core/services/analytics.service';
     QualificationsComponent,
     ProjectsSectionComponent,
     ContactSectionComponent,
-    ThemeToggleComponent
+    ThemeToggleComponent,
+    PortfolioChatbotComponent
 ],
 })
 export class AppComponent implements AfterViewInit {
