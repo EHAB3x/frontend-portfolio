@@ -1,12 +1,6 @@
 @import "global";
 
 .theme {
-  position: fixed;
-  top: 50%;
-  right: 1.25rem;
-  transform: translateY(-50%);
-  z-index: 9999;
-
   width: 2.5rem;
   height: 2.5rem;
   display: grid;
@@ -17,6 +11,8 @@
   background: var(--theme-bg);
   color: var(--theme-text);
   box-shadow: 0 8px 24px var(--theme-shadow);
+  z-index: 9;
+
 
   cursor: pointer;
   transition:
@@ -26,7 +22,6 @@
     box-shadow 0.2s ease;
 
   &:hover {
-    transform: translateY(-50%) translateY(-2px);
     color: var(--theme-accent);
     box-shadow: 0 12px 28px var(--theme-shadow);
   }
@@ -39,18 +34,30 @@
   ng-icon {
     font-size: 1.1rem;
   }
+
+  @media screen and (max-width: 768px) {
+    position: fixed;
+    top: 50%;
+    right: 1.25rem;
+    transform: translateY(-50%);
+
+    &:hover {
+      transform: translateY(-50%) translateY(-2px);
+    }
+  }
 }
 
 @media screen and (max-width: 768px) {
   .theme {
     top: auto;
-    bottom: 5rem;
+    bottom: 9rem;
     right: 0.75rem;
     transform: none;
+    width: 3.2rem;
+    height: 3.2rem;
 
     &:hover {
       transform: translateY(-2px);
     }
   }
 }
-
