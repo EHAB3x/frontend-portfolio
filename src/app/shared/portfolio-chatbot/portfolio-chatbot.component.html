@@ -1,0 +1,100 @@
+<button
+  type="button"
+  class="chatbot__launcher"
+  [attr.aria-expanded]="isOpen"
+  aria-controls="portfolio-chatbot-panel"
+  aria-label="Open chat with Ihab's portfolio assistant"
+  (click)="toggle()"
+>
+  <span class="chatbot__launcher-label">
+    <ng-icon name="faSolidRobot" aria-hidden="true" size="24"></ng-icon>
+  </span>
+</button>
+
+<section
+  *ngIf="isPanelVisible"
+  id="portfolio-chatbot-panel"
+  class="chatbot__panel"
+  [class.chatbot__panel--open]="isOpen"
+  [attr.aria-hidden]="!isOpen"
+  aria-label="Ihab's portfolio assistant"
+>
+  <header class="chatbot__header">
+    <div>
+      <span class="chatbot__eyebrow">PORTFOLIO ASSISTANT</span>
+    </div>
+    <button
+      type="button"
+      class="chatbot__close"
+      aria-label="Close chat"
+      (click)="toggle()"
+    >
+      ×
+    </button>
+  </header>
+
+  <div #messageList class="chatbot__messages" aria-live="polite">
+    <div
+      *ngFor="let message of messages; trackBy: trackMessage"
+      class="chatbot__message"
+      [class.chatbot__message--visitor]="message.author === 'visitor'"
+    >
+      {{ message.text }}
+    </div>
+    <div
+      *ngIf="isLoading"
+      class="chatbot__status"
+      aria-label="Assistant is typing"
+    >
+      Ihab’s assistant is thinking...
+    </div>
+    <div *ngIf="errorMessage" class="chatbot__error" role="alert">
+      {{ errorMessage }}
+    </div>
+  </div>
+
+  <div class="chatbot__prompts" *ngIf="messages.length === 1">
+    <button
+      type="button"
+      *ngFor="let prompt of quickPrompts"
+      (click)="ask(prompt)"
+    >
+      {{ prompt }}
+    </button>
+  </div>
+
+  <article *ngIf="showWhatsAppCard" class="chatbot__contact-card">
+    <div class="chatbot__contact-icon" aria-hidden="true">↗</div>
+    <div class="chatbot__contact-copy">
+      <strong>Let’s talk about your project</strong>
+      <span>Reach Ihab directly on WhatsApp.</span>
+    </div>
+    <a
+      [href]="whatsappUrl"
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Contact Ihab on WhatsApp"
+    >
+      Chat
+    </a>
+  </article>
+
+  <form class="chatbot__form" (submit)="$event.preventDefault(); ask(draft)">
+    <label class="sr-only" for="chatbot-question">Ask a question</label>
+    <input
+      id="chatbot-question"
+      name="question"
+      [(ngModel)]="draft"
+      maxlength="300"
+      autocomplete="off"
+      placeholder="Ask a question..."
+    />
+    <button
+      type="submit"
+      aria-label="Send question"
+      [disabled]="!draft.trim() || isLoading"
+    >
+      Send
+    </button>
+  </form>
+</section>
