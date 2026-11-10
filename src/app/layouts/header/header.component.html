@@ -8,18 +8,22 @@
     <div class="nav__menu" [class.show-menu]="showMenu">
       <ul class="nav__list">
         @for (item of navLinksArray; track item.id) {
-        <li class="nav__item">
-          <a
-            [href]="'#' + item.id"
-            class="nav__link"
-            [class.active-link]="activeLink === item.id"
-            (click)="setActiveLink(item.id)"
-          >
-            <ng-icon [name]="item.svg" class="nav__icon" aria-hidden="true" />
-            <span>{{ item.name }}</span>
-          </a>
-        </li>
+          <li class="nav__item">
+            <a
+              [href]="'#' + item.id"
+              class="nav__link"
+              [class.active-link]="activeLink === item.id"
+              (click)="setActiveLink(item.id)"
+            >
+              <ng-icon [name]="item.svg" class="nav__icon" aria-hidden="true" />
+              <span>{{ item.name }}</span>
+            </a>
+          </li>
         }
+        <app-theme-toggle
+          data-aos="fade-down"
+          data-aos-duration="600"
+        ></app-theme-toggle>
       </ul>
 
       <button

@@ -14,10 +14,11 @@ import {
 } from '@ng-icons/bootstrap-icons';
 import { INavLink } from '../../core/interfaces/nav-links';
 import { navLinks } from '../../core/constants/navLinks';
+import { ThemeToggleComponent } from '../../shared/theme-toggle/theme-toggle.component';
 
 @Component({
   selector: 'app-header',
-  imports: [NgIcon, RouterLink, CommonModule],
+  imports: [NgIcon, RouterLink, CommonModule, ThemeToggleComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
   viewProviders: [
